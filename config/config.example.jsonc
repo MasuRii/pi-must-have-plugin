@@ -1,0 +1,17 @@
+{
+  // Local override for must-have-plugin
+  "debug": false,
+  "replacements": {
+    "must": "MUST",
+    "must not": "MUST NOT",
+    "required": "REQUIRED",
+    "shall": "SHALL",
+    "shall not": "SHALL NOT",
+    "should": "SHOULD",
+    "should not": "SHOULD NOT",
+    "recommended": "RECOMMENDED",
+    "not recommended": "NOT RECOMMENDED",
+    "may": "MAY",
+    "optional": "OPTIONAL"
+  }
+}
