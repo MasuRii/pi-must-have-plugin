@@ -52,24 +52,44 @@ function parseConfigFromPath(path: string): Omit<ConfigLoadResult, "source"> {
 	};
 }
 
+const LEGACY_CONFIG_PATHS: readonly string[] = [
+	LEGACY_PI_MUST_HAVE_PLUGIN_CONFIG_PATH,
+	LEGACY_MUST_HAVE_PLUGIN_CONFIG_PATH,
+	LEGACY_OPENCODE_CONFIG_PATH,
+];
+
+function findLegacyConfigPath(): string | undefined {
+	for (const path of LEGACY_CONFIG_PATHS) {
+		if (existsSync(path)) {
+			return path;
+		}
+	}
+
+	return undefined;
+}
+
 export function ensureConfigExists(): EnsureConfigResult {
-	if (
-		existsSync(CONFIG_PATH) ||
-		existsSync(LEGACY_PI_MUST_HAVE_PLUGIN_CONFIG_PATH) ||
-		existsSync(LEGACY_MUST_HAVE_PLUGIN_CONFIG_PATH) ||
-		existsSync(LEGACY_OPENCODE_CONFIG_PATH)
-	) {
+	if (existsSync(CONFIG_PATH)) {
 		return { created: false };
 	}
 
+	const legacyPath = findLegacyConfigPath();
+
 	try {
 		mkdirSync(CONFIG_DIR, { recursive: true });
+
+		if (legacyPath) {
+			const legacyContent = readFileSync(legacyPath, "utf-8");
+			writeFileSync(CONFIG_PATH, legacyContent, "utf-8");
+			return { created: true, migratedFrom: legacyPath };
+		}
+
 		writeFileSync(CONFIG_PATH, DEFAULT_CONFIG, "utf-8");
 		return { created: true };
 	} catch (error) {
 		return {
 			created: false,
-			error: `Failed to create default config at ${CONFIG_PATH}: ${error instanceof Error ? error.message : String(error)}`,
+			error: `Failed to initialize config at ${CONFIG_PATH}: ${error instanceof Error ? error.message : String(error)}`,
 		};
 	}
 }

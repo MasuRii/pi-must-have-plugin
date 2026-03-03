@@ -11,6 +11,7 @@ export interface ConfigLoadResult {
 
 export interface EnsureConfigResult {
 	created: boolean;
+	migratedFrom?: string;
 	error?: string;
 }
 

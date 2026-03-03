@@ -49,6 +49,12 @@ export default function mustHaveExtension(pi: ExtensionAPI): void {
 		if (ensureResult.error) {
 			warnOnce(ensureResult.error, ctx);
 		}
+		if (ensureResult.migratedFrom) {
+			warnOnce(
+				`${EXTENSION_NAME}: migrated legacy config from ${ensureResult.migratedFrom} to ${CONFIG_PATH}.`,
+				ctx,
+			);
+		}
 
 		const loaded = loadConfig();
 		if (loaded.warning) {
