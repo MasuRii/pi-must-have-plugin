@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1] - 2026-03-04
+
+### Changed
+- Rewrote README.md with professional documentation standards
+- Added comprehensive feature documentation, configuration reference, and usage examples
+- Improved legacy config path detection with centralized lookup
+- Added migration source tracking to config loader feedback
+
 ## 0.4.0 - 2026-03-02
 
 - Renamed package identity from `pi-must-have-plugin` to `pi-must-have-extension`.
