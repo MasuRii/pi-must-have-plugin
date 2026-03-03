@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.2] - 2026-03-04
+
+### Fixed
+- Restored missing asset references in README (demo.mp4 video and pi-must-have-extension.png image)
+
 ## [0.4.1] - 2026-03-04
 
 ### Changed

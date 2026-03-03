@@ -2,6 +2,12 @@
 
 Normalize RFC 2119 language in Pi prompts by automatically rewriting lowercase modal terms (`must`, `should not`, `optional`) into uppercase normative forms (`MUST`, `SHOULD NOT`, `OPTIONAL`).
 
+![pi-must-have-extension](asset/pi-must-have-extension.png)
+
+## Demo
+
+<video src="asset/demo.mp4" controls width="100%"></video>
+
 ## Features
 
 - **RFC 2119/8174 compliance** — Transforms modal keywords to standard uppercase notation
